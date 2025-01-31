@@ -1,11 +1,11 @@
-import { Box, Link } from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import SearchBox from "../../components/Search/SearchBox";
-import { Table } from "../../components/Table/Table";
-import { getCampaigns, searchCampaigns } from "../../service/campaign";
-import { Campaign } from "../../types/campaign";
+import SearchBox from "../../../components/Search/SearchBox";
+import { Table } from "../../../components/Table/Table";
+import { getCampaigns, searchCampaigns } from "../../../service/campaign";
+import { Campaign } from "../../../types/campaign";
 
 export default function Campaigns() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -44,7 +44,14 @@ export default function Campaigns() {
       field: 'url',
       headerName: 'Landing Page URL',
       flex: 1,
-      renderCell: (params) => <Link href={params.value} security="noopener noreferrer" target="_blank">{params.value}</Link>
+      renderCell: (params) => (
+        <Link
+          href={params.value}
+          security="noopener noreferrer"
+          target="_blank"
+        >
+          {params.value}
+        </Link>)
     },
     {
       field: 'isActive',
@@ -60,10 +67,13 @@ export default function Campaigns() {
           <Grid>
             Campaign Management
           </Grid>
-          <SearchBox
-            placeholder="Search by title and url"
-            onClick={onSearchClick}
-          />
+          <Grid container spacing={10}>
+            <SearchBox
+              placeholder="Search by title and url"
+              onClick={onSearchClick}
+            />
+            <Button variant="contained" onClick={navigateToNewPage}>Add New</Button>
+          </Grid>
         </Grid>
         <Box width={'100%'} height={20}>
           <Table

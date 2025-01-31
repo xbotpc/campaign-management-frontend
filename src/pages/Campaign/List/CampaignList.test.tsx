@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Campaigns from './Campaigns';
+import Campaigns from './CampaignList';
 
 test('renders learn react link', () => {
   render(<Campaigns />);
