@@ -1,3 +1,4 @@
+import { Box, Link } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
@@ -5,7 +6,6 @@ import SearchBox from "../../components/Search/SearchBox";
 import { Table } from "../../components/Table/Table";
 import { getCampaigns, searchCampaigns } from "../../service/campaign";
 import { Campaign } from "../../types/campaign";
-import { Box } from "@mui/material";
 
 export default function Campaigns() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -43,7 +43,8 @@ export default function Campaigns() {
     {
       field: 'url',
       headerName: 'Landing Page URL',
-      flex: 1
+      flex: 1,
+      renderCell: (params) => <Link href={params.value} security="noopener noreferrer" target="_blank">{params.value}</Link>
     },
     {
       field: 'isActive',
