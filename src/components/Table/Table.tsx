@@ -2,7 +2,7 @@ import Paper from '@mui/material/Paper';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 type Props = {
-    columns: GridColDef[];
+    columns: any[];
     rows: any[];
 }
 

@@ -1,14 +1,18 @@
-import { Box, Button, Link } from "@mui/material";
+import { Box, Button, Drawer, Link } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import SearchBox from "../../../components/Search/SearchBox";
 import { Table } from "../../../components/Table/Table";
 import { getCampaigns, searchCampaigns } from "../../../service/campaign";
 import { Campaign } from "../../../types/campaign";
+import CampaignDetail from "../Detail/CampaignDetail";
+
+const isMobile = () => window.innerWidth <= 800 && window.innerHeight <= 1000
 
 export default function Campaigns() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     init()
@@ -27,11 +31,17 @@ export default function Campaigns() {
     }
   }
 
+  function onAddNewClick() {
+    setIsDrawerOpen(true);
+  }
+
   const columns: GridColDef[] = [
     {
-      field: 'id',
-      headerName: 'ID',
-      flex: 1
+      field: 'recordNo',
+      headerName: '#',
+      flex: 0,
+      editable: false,
+      renderCell: (params: GridRenderCellParams) => params.api.getRowIndexRelativeToVisibleRows(params.row.id) + 1,
     },
     {
       headerName: 'Title',
@@ -62,6 +72,12 @@ export default function Campaigns() {
 
   return (
     <>
+      <Drawer open={isDrawerOpen} anchor="right" PaperProps={{
+        style: {
+          padding: '1.5em',
+          width: '25%'
+        }
+      }}><CampaignDetail /></Drawer>
       <Grid container padding={5} spacing={2}>
         <Grid width={'100%'} container justifyContent="space-between" alignItems={"baseline"}>
           <Grid>
@@ -72,7 +88,7 @@ export default function Campaigns() {
               placeholder="Search by title and url"
               onClick={onSearchClick}
             />
-            <Button variant="contained" onClick={navigateToNewPage}>Add New</Button>
+            <Button variant="contained" onClick={onAddNewClick}>Add New</Button>
           </Grid>
         </Grid>
         <Box width={'100%'} height={20}>

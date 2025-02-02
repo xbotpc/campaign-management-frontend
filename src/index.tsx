@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Campaigns from './pages/Campaigns/Campaigns';
+import Campaigns from './pages/Campaign/List/CampaignList';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
