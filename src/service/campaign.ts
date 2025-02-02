@@ -20,7 +20,9 @@ export async function searchCampaigns(
     try {
         return await (await fetch(
             process.env.REACT_APP_EC2_IP +
-                `/campaign/search?queryString=${queryString}&isActive=${isActive || ''}`,
+                `/campaign/search?queryString=${queryString}&isActive=${
+                    isActive || ""
+                }`,
         )).json();
     } catch (error: any) {
         console.error("Error while searching for campaigns", error?.message);
