@@ -1,10 +1,10 @@
-import { Box, Button, Drawer, Link } from "@mui/material";
+import { Box, Button, Drawer, Link, Switch } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import SearchBox from "../../../components/Search/SearchBox";
 import { Table } from "../../../components/Table/Table";
-import { getCampaigns, searchCampaigns } from "../../../service/campaign";
+import { editCampaign, getCampaigns, searchCampaigns } from "../../../service/campaign";
 import { Campaign } from "../../../types/campaign";
 import CampaignDetail from "../Detail/CampaignDetail";
 
@@ -31,6 +31,11 @@ export default function Campaigns() {
 
   function onAddNewClick() {
     setIsDrawerOpen(true);
+  }
+
+  async function onSwitchToggle(id: string, isActive: boolean) {
+    await editCampaign({ id, isActive: !isActive })
+    init();
   }
 
   const columns: GridColDef[] = [
@@ -64,7 +69,8 @@ export default function Campaigns() {
     {
       field: 'isActive',
       headerName: 'Is Running',
-      flex: 1
+      flex: 1,
+      renderCell: (params) => <Switch checked={params.row.isActive} onChange={() => onSwitchToggle(params.row.id, params.row.isActive)} />
     },
   ];
 
