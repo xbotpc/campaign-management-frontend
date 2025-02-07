@@ -29,3 +29,19 @@ export async function searchCampaigns(
         return [];
     }
 }
+
+export async function saveCampaign(data: any) {
+    try {
+        await fetch(process.env.REACT_APP_EC2_IP + "/campaign", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+    } catch (error) {
+        console.error("Error submitting campaign", error);
+        throw error;
+    }
+}

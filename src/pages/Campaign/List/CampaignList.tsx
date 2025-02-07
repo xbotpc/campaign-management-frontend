@@ -8,8 +8,6 @@ import { getCampaigns, searchCampaigns } from "../../../service/campaign";
 import { Campaign } from "../../../types/campaign";
 import CampaignDetail from "../Detail/CampaignDetail";
 
-const isMobile = () => window.innerWidth <= 800 && window.innerHeight <= 1000
-
 export default function Campaigns() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -74,10 +72,12 @@ export default function Campaigns() {
     <>
       <Drawer open={isDrawerOpen} anchor="right" PaperProps={{
         style: {
-          padding: '1.5em',
-          width: '25%'
+          padding: '1em',
+          width: '30%'
         }
-      }}><CampaignDetail /></Drawer>
+      }}>
+        <CampaignDetail onSubmit={() => setIsDrawerOpen(false)} />
+      </Drawer>
       <Grid container padding={5} spacing={2}>
         <Grid width={'100%'} container justifyContent="space-between" alignItems={"baseline"}>
           <Grid>
