@@ -73,7 +73,6 @@ export default function Campaigns() {
       <Drawer open={isDrawerOpen} anchor="right" PaperProps={{
         style: {
           padding: '1em',
-          width: '30%'
         }
       }}>
         <CampaignDetail onSubmit={() => setIsDrawerOpen(false)} />
