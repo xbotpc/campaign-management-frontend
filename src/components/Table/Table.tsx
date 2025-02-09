@@ -1,5 +1,5 @@
 import Paper from '@mui/material/Paper';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 type Props = {
     columns: any[];
@@ -17,6 +17,8 @@ export const Table = ({ rows, columns }: Props) => {
                 disableColumnMenu
                 disableColumnSorting
                 hideFooterSelectedRowCount
+                getRowHeight={() => "auto"}
+                showColumnVerticalBorder
             />
         </Paper>
     )

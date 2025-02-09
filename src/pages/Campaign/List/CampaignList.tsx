@@ -22,7 +22,7 @@ export default function Campaigns() {
   }
 
   async function onSearchClick(text: string) {
-    if (text === '') {
+    if (text.trim() === '') {
       init();
     } else {
       setCampaigns(await searchCampaigns({ queryString: text }));
@@ -42,20 +42,20 @@ export default function Campaigns() {
     {
       field: 'recordNo',
       headerName: '#',
-      flex: 0,
       editable: false,
       renderCell: (params: GridRenderCellParams) => params.api.getRowIndexRelativeToVisibleRows(params.row.id) + 1,
     },
     {
       headerName: 'Title',
       field: 'title',
-      display: 'flex',
       filterable: false,
-      flex: 1
+      display: "flex",
+      flex: 1,
     },
     {
       field: 'url',
       headerName: 'Landing Page URL',
+      display: "flex",
       flex: 1,
       renderCell: (params) => (
         <Link
@@ -69,7 +69,6 @@ export default function Campaigns() {
     {
       field: 'isActive',
       headerName: 'Is Running',
-      flex: 1,
       renderCell: (params) => <Switch checked={params.row.isActive} onChange={() => onSwitchToggle(params.row.id, params.row.isActive)} />
     },
   ];
@@ -88,7 +87,7 @@ export default function Campaigns() {
           <Grid>
             Campaign Management
           </Grid>
-          <Grid container spacing={10}>
+          <Grid container spacing={3}>
             <SearchBox
               placeholder="Search by title and url"
               onClick={onSearchClick}
