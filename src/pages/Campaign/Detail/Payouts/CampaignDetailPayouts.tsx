@@ -2,7 +2,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Grid2 as Grid, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 import CountrySelect from "../../../../components/CountrySelect/CountrySelect";
-import CurrencySelect from "../../../../components/CurrencySelect/CurrencySelect";
 
 type Payout = { id?: string, currency: string, amount: number, country: string }
 
@@ -36,7 +35,7 @@ const CampaignDetailPayouts = ({ payouts, onChange }: Props) => {
                     alignItems="center"
                     width={'100%'}
                 >
-                    <Grid size={3}>
+                    <Grid size={6}>
                         <TextField
                             type="number"
                             name="amount"
@@ -45,15 +44,7 @@ const CampaignDetailPayouts = ({ payouts, onChange }: Props) => {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => onPayoutUpdate(payout.id || i.toString(), 'amount', e.target.value)}
                         />
                     </Grid>
-                    <Grid size={4}>
-                        <CurrencySelect
-                            id="currencySelect"
-                            label="Currency"
-                            value={payout.currency}
-                            onOptionSelection={(value: string) => onPayoutUpdate(payout.id || i.toString(), 'currency', value)}
-                        />
-                    </Grid>
-                    <Grid size={4}>
+                    <Grid size={6}>
                         <CountrySelect
                             id="countrySelect"
                             label="Country"
