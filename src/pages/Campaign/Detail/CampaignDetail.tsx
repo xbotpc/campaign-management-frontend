@@ -1,3 +1,4 @@
+import { Clear } from "@mui/icons-material";
 import { Box, Button, Grid2 as Grid, TextField } from "@mui/material";
 import { ChangeEvent, useCallback, useEffect, useReducer, useState } from "react";
 import { getCampaignByID, saveCampaign } from "../../../service/campaign";
@@ -79,7 +80,10 @@ const CampaignDetail = ({ campaignID = '', onSubmit }: Props) => {
 
     return (
         <Box width="100%">
-            <h2>{campaignID ? 'View' : 'Add new campaign'}</h2>
+            <Grid container justifyContent="space-between">
+                <h2>{campaignID ? 'View' : 'Add new campaign'}</h2>
+                <Button color="inherit" variant="text" onClick={() => onSubmit()}><Clear /></Button>
+            </Grid>
             <Grid container spacing={2} flexDirection="column">
                 <Grid size={12}>
                     <TextField

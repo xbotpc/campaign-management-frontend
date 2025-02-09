@@ -78,9 +78,10 @@ export default function Campaigns() {
       <Drawer open={isDrawerOpen} anchor="right" PaperProps={{
         style: {
           padding: '1em',
+          width: '350px'
         }
       }}>
-        <CampaignDetail onSubmit={() => setIsDrawerOpen(false)} />
+        <CampaignDetail onSubmit={() => { setIsDrawerOpen(false); init() }} />
       </Drawer>
       <Grid container padding={5} spacing={2}>
         <Grid width={'100%'} container justifyContent="space-between" alignItems={"baseline"}>
